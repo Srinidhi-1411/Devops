@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ultimate Event Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 25px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    fieldset {
+      border: none;
+      margin-bottom: 20px;
+    }
+
+    legend {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #007BFF;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Event Registration Form</h1>
+
+  <form id="registrationForm" onsubmit="return validateForm()">
+
+    <!-- Personal Details -->
+    <fieldset>
+      <legend>Personal Information</legend>
+
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required pattern="\d{10}" placeholder="10-digit number">
+    </fieldset>
+
+    <!-- Event Preferences -->
+    <fieldset>
+      <legend>Event Preferences</legend>
+
+      <label for="eventType">Event Type:</label>
+      <select id="eventType" name="eventType" required>
+        <option value="">--Select an event--</option>
+        <option value="workshop">Workshop</option>
+        <option value="seminar">Seminar</option>
+        <option value="webinar">Webinar</option>
+        <option value="competition">Competition</option>
+      </select>
+
+      <label>Gender:</label>
+      <input type="radio" id="male" name="gender" value="Male" required>
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="Female">
+      <label for="female">Female</label>
+      <input type="radio" id="other" name="gender" value="Other">
+      <label for="other">Other</label>
+    </fieldset>
+
+    <!-- Agreement -->
+    <fieldset>
+      <legend>Terms & Conditions</legend>
+      <input type="checkbox" id="agree" name="agree" required>
+      <label for="agree">I agree to the terms and conditions.</label>
+    </fieldset>
+
+    <button type="submit">Submit Registration</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      const phone = document.getElementById('phone').value.trim();
+      if (!/^\d{10}$/.test(phone)) {
+        alert('Please enter a valid 10-digit phone number.');
+        return false;
+      }
+
+      const eventType = document.getElementById('eventType').value;
+      if (eventType === "") {
+        alert('Please select an event type.');
+        return false;
+      }
+
+      const agree = document.getElementById('agree').checked;
+      if (!agree) {
+        alert('You must agree to the terms and conditions.');
+        return false;
+      }
+
+      alert('🎉 Registration Successful! Thank you for signing up.');
+      return true;
+    }
+  </script>
+
+</body>
+</html>
